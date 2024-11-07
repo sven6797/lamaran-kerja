@@ -12,6 +12,7 @@
             /* Hapus margin default */
             padding: 0;
             box-sizing: border-box;
+            background-image: url(https://imgur.com/JWmLSre.jpeg);
             /* Menjaga perhitungan padding dan margin lebih konsisten */
         }
 
@@ -21,9 +22,14 @@
             max-width: 700px;
             margin: auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: #ffffff;
+            opacity: 0.9;
             box-sizing: border-box;
             /* Menjaga padding dihitung dalam lebar */
+        }
+
+        p {
+            color: black;
         }
 
         h2 {
@@ -63,23 +69,27 @@
 
         /* Menambahkan jarak lebih antara titik dua dan teks */
         .body p span.tag1 {
-            padding-left: 100px; /* Atur jarak ini sesuai kebutuhan */
+            padding-left: 118px; /* Atur jarak ini sesuai kebutuhan */
         }
 
         .body p span.tag2 {
-            padding-left: 93px; /* Atur jarak ini sesuai kebutuhan */
+            padding-left: 111px; /* Atur jarak ini sesuai kebutuhan */
         }
 
         .body p span.tag3 {
-            padding-left: 92px; /* Atur jarak ini sesuai kebutuhan */
+            padding-left: 108px; /* Atur jarak ini sesuai kebutuhan */
         }
 
         .body p span.tag4 {
-            padding-left: 54px; /* Atur jarak ini sesuai kebutuhan */
+            padding-left: 70px; /* Atur jarak ini sesuai kebutuhan */
         }
 
         .body p span.tag5 {
-            padding-left: 90px; /* Atur jarak ini sesuai kebutuhan */
+            padding-left: 102px; /* Atur jarak ini sesuai kebutuhan */
+        }
+
+        .body p span.tag6 {
+            padding-left: 5px; /* Atur jarak ini sesuai kebutuhan */
         }
 
         /* Agar signature rata kanan dengan jarak lebih luas */
@@ -174,6 +184,7 @@
 </head>
 
 <body>
+    <b>
     <div class="container">
         <div class="letter-content">
             <div class="header">
@@ -192,6 +203,7 @@
             <p>Saya yang bertanda tangan di bawah ini:</p>
             <div class="body">
                 <p>Nama <span class="tag1">: </span><span id="nameResult"></span></p>
+                <p>Tempat/Tanggal Lahir <span class="tag6">: </span><span id="tL"></span></p>
                 <p>No Tlp <span class="tag2">: </span><span id="phoneResult"></span></p>
                 <p>Alamat <span class="tag3">: </span><span id="homeResult"></span></p>
                 <p>Asal Sekolah <span class="tag4">: </span><span id="schoolResult"></span></p>
@@ -219,8 +231,24 @@
         <br>
         <button onclick="window.history.back()">Kembali</button>
     </div>
+</b>
 
     <script>
+        // Fungsi untuk mengubah format tanggal menjadi "DD Month YYYY"
+        function formatDate(dateString) {
+            const months = [
+                "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+            ];
+
+            const dateParts = dateString.split('-'); // Membagi string tanggal menjadi array
+            const day = dateParts[2]; // Mengambil bagian hari
+            const month = months[parseInt(dateParts[1], 10) - 1]; // Mengambil nama bulan
+            const year = dateParts[0]; // Mengambil tahun
+
+            return `${day} ${month} ${year}`; // Menggabungkan menjadi format DD Month YYYY
+        }
+
         // Mengambil data surat dari localStorage
         const letterContent = localStorage.getItem('letterContent');
 
@@ -230,10 +258,11 @@
             const content = JSON.parse(letterContent);
 
             // Menampilkan data di elemen yang sesuai
-            document.getElementById('date').textContent = content.date;
+            document.getElementById('date').textContent = formatDate(content.date); // Menggunakan fungsi formatDate untuk tanggal
             document.getElementById('companyNameResult').textContent = content.companyName;
             document.getElementById('addressResult').textContent = content.address;
             document.getElementById('nameResult').textContent = content.name;
+            document.getElementById('tL').textContent = content.tl;
             document.getElementById('phoneResult').textContent = content.phone;
             document.getElementById('homeResult').textContent = content.alamat;
             document.getElementById('schoolResult').textContent = content.school;

@@ -23,6 +23,8 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            background-image: url(https://images.wallpapersden.com/image/download/cool-jujutsu-kaisen-hd-satoru-gojo-anime-art_bmdlaG2UmZqaraWkpJRnbmZnrWZraGc.jpg);
+            background-repeat: no-repeat;
         }
 
         /* Kontainer utama untuk form */
@@ -32,6 +34,7 @@
             max-width: 800px;
             border-radius: 10px;
             padding: 30px;
+            opacity: 0.9;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px); /* Efek blur pada latar belakang */
         }
@@ -170,6 +173,7 @@
             const companyName = document.getElementById('companyName').value;
             const address = document.getElementById('address').value;
             const name = document.getElementById('name').value;
+            const tl = document.getElementById('tl').value;
             const phone = document.getElementById('phone').value;
             const alamat = document.getElementById('alamat').value;
             const school = document.getElementById('school').value;
@@ -181,6 +185,7 @@
                 companyName: companyName,
                 address: address,
                 name: name,
+                tl: tl,
                 alamat: alamat,
                 phone: phone,
                 school: school,
@@ -211,6 +216,7 @@
             <p>Dengan Hormat,</p>
             <p>Saya yang bertanda tangan di bawah ini :</p>
             <p>Nama : <input type="text" id="name" placeholder="Nama Anda"></p>
+            <p>Tempat Tanggal Lahir : <input type="text" id="tl" placeholder="Tempat Tanggal Lahir Anda"></p>
             <p>No Tlp : <input type="text" id="phone" placeholder="Nomor Telepon"></p>
             <p>Alamat : <input type="text" id="alamat" placeholder="Alamat Anda"></p>
             <p>Asal Sekolah : <input type="text" id="school" placeholder="Nama Sekolah"></p>
