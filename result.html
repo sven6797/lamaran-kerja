@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Surat Lamaran</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 40px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 700px;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .letter-content {
+            line-height: 1.6;
+        }
+
+        .letter-content p {
+            margin: 10px 0;
+        }
+
+        .header {
+            text-align: right;
+            margin-bottom: 30px;
+        }
+
+        .header p {
+            margin: 5px 0;
+        }
+
+        .address {
+            margin-bottom: 40px;
+        }
+
+        .address p {
+            margin-left: 0;
+            text-align: left;
+        }
+
+        .body p {
+            text-indent: 40px;
+            margin-left: 20px;
+        }
+
+        /* Menambahkan jarak lebih antara titik dua dan teks */
+        .body p span.tag1 {
+            padding-left: 100px; /* Atur jarak ini sesuai kebutuhan */
+        }
+
+        .body p span.tag2 {
+            padding-left: 93px; /* Atur jarak ini sesuai kebutuhan */
+        }
+
+        .body p span.tag3 {
+            padding-left: 92px; /* Atur jarak ini sesuai kebutuhan */
+        }
+
+        .body p span.tag4 {
+            padding-left: 54px; /* Atur jarak ini sesuai kebutuhan */
+        }
+
+        .body p span.tag5 {
+            padding-left: 90px; /* Atur jarak ini sesuai kebutuhan */
+        }
+
+        .signature p {
+            text-align: right;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            margin: 0;
+            text-indent: 0;
+        }
+
+        @media print {
+            button {
+                display: none;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            body {
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="letter-content">
+            <div class="header">
+                <p>Surabaya, <span id="date"></span></p>
+                <p>Hal: Surat Lamaran</p>
+            </div>
+
+            <div class="address">
+                <p>Yth,</p>
+                <p>Bapak/Ibu Direktur PT. <span id="companyNameResult"></span></p>
+                <p>Jl. <span id="addressResult"></span></p>
+                <p>Surabaya</p>
+            </div>
+
+            <p>Dengan Hormat,</p>
+            <p>Saya yang bertanda tangan di bawah ini:</p>
+            <div class="body">
+                <p>Nama <span class="tag1">: </span><span id="nameResult"></span></p>
+                <p>No Tlp <span class="tag2">: </span><span id="phoneResult"></span></p>
+                <p>Alamat <span class="tag3">: </span><span id="homeResult"></span></p>
+                <p>Asal Sekolah <span class="tag4">: </span><span id="schoolResult"></span></p>
+                <p>Jurusan <span class="tag5">:  </span><span id="majorResult"></span></p>
+            </div>
+
+            <p>Dengan surat ini saya bermaksud mengajukan izin untuk melamar pekerjaan di perusahaan Bapak/Ibu kelola.
+                Sebagai bahan pertimbangan Bapak/Ibu, saya lampirkan beberapa berkas sebagai berikut:</p>
+            <ul>
+                <li>Daftar Riwayat Hidup (CV)</li>
+                <li>Foto Copy Ijazah</li>
+                <li>Foto Copy KTP</li>
+                <li>Foto Copy KK</li>
+                <li>Pas Foto terbaru ukuran 3x4 = 2 lembar</li>
+            </ul>
+            <p>Demikian permohonan ini saya ajukan, besar harapan saya agar Bapak/Ibu berkenan mempertimbangkan permohonan ini. Atas perhatian dan kebijaksanaannya, saya ucapkan terima kasih.</p>
+
+            <div class="signature">
+                <p>Hormat Saya,</p>
+                <p><span id="nameResult2"></span></p>
+            </div>
+        </div>
+
+        <br>
+        <button onclick="window.history.back()">Kembali</button>
+    </div>
+
+    <script>
+        // Mengambil data surat dari localStorage
+        const letterContent = localStorage.getItem('letterContent');
+        
+        // Memeriksa apakah ada data surat yang disimpan
+        if (letterContent) {
+            // Parsing data yang disimpan (mengubah JSON kembali menjadi objek)
+            const content = JSON.parse(letterContent);
+
+            // Menampilkan data di elemen yang sesuai
+            document.getElementById('date').textContent = content.date;
+            document.getElementById('companyNameResult').textContent = content.companyName;
+            document.getElementById('addressResult').textContent = content.address;
+            document.getElementById('nameResult').textContent = content.name;
+            document.getElementById('phoneResult').textContent = content.phone;
+            document.getElementById('homeResult').textContent = content.alamat;
+            document.getElementById('schoolResult').textContent = content.school;
+            document.getElementById('majorResult').textContent = content.major;
+            document.getElementById('nameResult2').textContent = content.name;
+        } else {
+            // Menangani kasus jika tidak ada surat yang tersimpan
+            alert('Data surat tidak ditemukan.');
+        }
+    </script>
+</body>
+
+</html>

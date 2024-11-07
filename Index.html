@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Lamaran</title>
+    <style>
+        /* Reset margin dan padding untuk semua elemen */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Pengaturan body dengan background gradien dan font modern */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient keren */
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Kontainer utama untuk form */
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px); /* Efek blur pada latar belakang */
+        }
+
+        /* Judul */
+        h2 {
+            text-align: center;
+            color: #2575fc;
+            font-size: 2.2rem; /* Gunakan rem agar ukuran font fleksibel */
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* Styling untuk form */
+        p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: black;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #f7f7f7;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus {
+            border-color: #2575fc;
+            background-color: #e3f2fd;
+            outline: none;
+        }
+
+        /* Styling untuk tombol */
+        button {
+            background-color: #2575fc;
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Efek hover pada tombol */
+        button:hover {
+            background-color: #6a11cb;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Styling untuk input teks */
+        .desc p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Menambahkan ikon atau placeholder keren di input */
+        input::placeholder {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        /* Membuat form lebih responsif di layar kecil */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 25px;
+                max-width: 700px;
+            }
+
+            h2 {
+                font-size: 1.8rem; /* Ukuran font judul lebih kecil di layar medium */
+            }
+
+            input[type="text"],
+            input[type="date"],
+            button {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                max-width: 600px;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            input[type="text"],
+            input[type="date"],
+            button {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            input[type="text"],
+            input[type="date"],
+            button {
+                font-size: 0.8rem;
+            }
+        }
+
+    </style>
+    <script>
+        function generateLetter() {
+            // Mengambil nilai dari input
+            const date = document.getElementById('date').value;
+            const companyName = document.getElementById('companyName').value;
+            const address = document.getElementById('address').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const alamat = document.getElementById('alamat').value;
+            const school = document.getElementById('school').value;
+            const major = document.getElementById('major').value;
+
+            // Menyusun data dalam bentuk objek
+            const letterData = {
+                date: date,
+                companyName: companyName,
+                address: address,
+                name: name,
+                alamat: alamat,
+                phone: phone,
+                school: school,
+                major: major
+            };
+
+            // Menyimpan data surat dalam bentuk objek JSON
+            localStorage.setItem('letterContent', JSON.stringify(letterData));
+
+            // Mengarahkan ke halaman result.html
+            window.location.href = 'result.html';
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Buat Surat Lamaran</h2>
+        <form onsubmit="event.preventDefault(); generateLetter();">
+            <p align="right">Surabaya, <input type="date" id="date" name=""><br>Hal: Surat Lamaran</p>
+            <p>Yth,</p>
+            <p>HRD PT. <input type="text" id="companyName" placeholder="Nama Perusahaan"></p>
+            <p>Jl. <input type="text" id="address" placeholder="Alamat Perusahaan"></p>
+            <p>Surabaya</p>
+        </form>
+        <br>
+        <div class="desc">
+            <p>Dengan Hormat,</p>
+            <p>Saya yang bertanda tangan di bawah ini :</p>
+            <p>Nama : <input type="text" id="name" placeholder="Nama Anda"></p>
+            <p>No Tlp : <input type="text" id="phone" placeholder="Nomor Telepon"></p>
+            <p>Alamat : <input type="text" id="alamat" placeholder="Alamat Anda"></p>
+            <p>Asal Sekolah : <input type="text" id="school" placeholder="Nama Sekolah"></p>
+            <p>Jurusan : <input type="text" id="major" placeholder="Jurusan Anda"></p>
+        </div>
+        <br>
+        <div>
+            <button type="button" onclick="generateLetter()">Tampilkan Surat</button>
+        </div>
+    </div>
+</body>
+
+</html>
